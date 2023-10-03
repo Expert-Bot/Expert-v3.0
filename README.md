@@ -17,6 +17,9 @@ DashBoard Coming Soon https://panel.expertbot.online/
 <img src="[https://media.discordapp.net/attachments/1133102654982209716/1158399229820149820/image.png?ex=651c1ada&is=651ac95a&hm=7e3a6d6d2d183d9a6822964ae3759932ca391e2912968345989b6e39fe57a78b&=">
 <h2>Invite Logs</h2>
 <img src="[https://media.discordapp.net/attachments/1133102654982209716/1158399860819636314/image.png?ex=651c1b70&is=651ac9f0&hm=b5362a9a2d834deaf5e12978a1df2f266d0665c911a1e149491fa87d04f3a0a9&=">
+<a href="https://top.gg/bot/1023810715250860105">
+  <img src="https://top.gg/api/widget/1023810715250860105.svg">
+</a>
 <h2>And Much More </h2>
 <li>Ticket System</span></li>
 <li>Economy System</span></li>
