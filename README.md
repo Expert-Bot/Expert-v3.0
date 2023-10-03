@@ -8,15 +8,16 @@
 </ul>
 DashBoard Coming Soon https://panel.expertbot.online/
 <h2>Music System</h2>
-<img src="[https://media.discordapp.net/attachments/1157782708446056550/1158396869098098818/image.png?ex=651c18a7&is=651ac727&hm=c1fe288d71855a1e9a9943f43679327cf0cb54cfee4c229b60ff1346b11d4922&=">
+![image](https://github.com/Expert-Bot/Expert-v3.0/assets/92865043/d31a9646-0890-4e35-a345-ac512885c578)
 <h2>Chat-Gpt  System</h2>
 <img src="https://media.discordapp.net/attachments/1151589548195840121/1158397718134280312/image.png?ex=651c1971&is=651ac7f1&hm=588020e1e6b68b312ba2840525676c9fcce2fa945c496f8ae1fe62c0948844c9&=">
 <h2>Thread Create  System</h2>
-<img src="[https://media.discordapp.net/attachments/1133102654982209716/1158398599470780476/image.png?ex=651c1a44&is=651ac8c4&hm=5ee1a3b12e424a0bc2fe33e5ee9d6574da491acea956e84eed01d84d59ebedd7&=">
+![image](https://github.com/Expert-Bot/Expert-v3.0/assets/92865043/1e421f2f-febc-48d6-8b84-f31cccc5363a)
 <h2>Welcome System</h2>
-<img src="[https://media.discordapp.net/attachments/1133102654982209716/1158399229820149820/image.png?ex=651c1ada&is=651ac95a&hm=7e3a6d6d2d183d9a6822964ae3759932ca391e2912968345989b6e39fe57a78b&=">
+![image](https://github.com/Expert-Bot/Expert-v3.0/assets/92865043/fb9b8d53-9cdc-467a-a75b-745ecc487adf)
 <h2>Invite Logs</h2>
-<img src="[https://media.discordapp.net/attachments/1133102654982209716/1158399860819636314/image.png?ex=651c1b70&is=651ac9f0&hm=b5362a9a2d834deaf5e12978a1df2f266d0665c911a1e149491fa87d04f3a0a9&=">
+![Uploading image.png…]()
+<h2>Add Our Discord bot if you don't want to host your Owne</h2>
 <a href="https://top.gg/bot/1023810715250860105">
   <img src="https://top.gg/api/widget/1023810715250860105.svg">
 </a>
@@ -30,3 +31,5 @@ DashBoard Coming Soon https://panel.expertbot.online/
 <li>Set yourself As a AFK</span></li>
 <li>you can search and See Anime Image</span></li>
 <li>Generate Ai Image and Much More Just Add Expert to your server and type /help to seen all commands info</span></li>
+for more info Dm Me on discord ``!D R A G O#0001``
+![image](https://github.com/Expert-Bot/Expert-v3.0/assets/92865043/703648c6-6cae-4523-8c67-269619c94a9f)
