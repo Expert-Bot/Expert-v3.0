@@ -4,6 +4,7 @@
 <li>npm install</li>
 <li>node index.js</li>
 <ul>
+  <h1>Features</h1>
 <li><span>Expert Bot</span> A multifunctional Discord Bot Which have Lots of Discord Functions</li>
 <li>It it has Anti nuke Feature It will Secure your Server Form Nukes, Raids, Spams etc</li>
 <li>Expert Have an Ai Feature You Can ask any thing like generate Code, info about any legal thing, and you can Generate the Ai image</span></li>
