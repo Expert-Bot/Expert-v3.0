@@ -1,0 +1,62 @@
+const { SlashCommandBuilder, AttachmentBuilder } = require("discord.js");
+const Levels = require("discord.js-leveling");
+const Canvacord = require("canvacord");
+const { createCanvas, loadImage } = require("canvas");
+const User = require("../../Models/User.js");
+const Discord = require("discord.js");
+
+module.exports = {
+  premiumOnly: true,
+  Cooldown: true,
+  data: new SlashCommandBuilder()
+    .setName("level-rank")
+    .setDescription("Get your or another member's rank")
+    .addUserOption((option) =>
+      option
+        .setName("member")
+        .setDescription("Target @member")
+        .setRequired(false)
+    ),
+  async execute(interaction) {
+    const member =
+      interaction.options.getMember("member") || interaction.member;
+
+    let user;
+
+    const guildId = member.guild.id;
+    const userId = member.user.id;
+
+    user = await User.findOne({ guildId, userId });
+
+    if (!user) {
+      user = {
+        level: 1,
+        xp: 0,
+      };
+    }
+
+    const rankCard = new Canvacord.Rank()
+      .setAvatar(member.user.displayAvatarURL({ format: "png" }))
+      .setBackground("IMAGE", "https://cdn.discordapp.com/attachments/1038452103233933392/1063241541243654144/3402026.png")
+      .setRankColor("#dcb8f4")
+      .setLevelColor("#dcb8f4")
+      .setProgressBar("#dcb8f4", "COLOR")
+      .setUsername(member.user.username)
+      .setDiscriminator(member.user.discriminator)
+      .setRank(user.rank || 1, "Rank", false)
+      .setCurrentXP(user.xp || 0)
+      .setLevel(user.level || 1, "Level", true)
+      .setRequiredXP(Levels.xpFor(user.level + 1) - Levels.xpFor(user.level), "XP");
+
+    const card = await rankCard.build();
+
+    const attachment = new Discord.AttachmentBuilder(
+      card,
+      `${member.user.username}-rank.png`
+    );
+
+    interaction.reply({
+      files: [attachment],
+    });
+  },
+};

@@ -1,0 +1,37 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { CommandInteraction, EmbedBuilder } = require('discord.js');
+
+module.exports = {
+  adminOnly: true,
+  data: new SlashCommandBuilder()
+    .setName('leave')
+    .setDescription('Leaves the specified server')
+    .addStringOption(option =>
+      option.setName('guild_id')
+        .setDescription('ID of the server to leave')
+        .setRequired(true)
+    ),
+
+  async execute(interaction) {
+    const guildId = interaction.options.getString('guild_id');
+
+    try {
+      const guild = await interaction.client.guilds.fetch(guildId);
+      await guild.leave();
+
+      const embed = new EmbedBuilder()
+        .setColor('#ff0000')
+        .setDescription(`Left the server: ${guild.name}`);
+
+      await interaction.reply({ embeds: [embed] });
+    } catch (error) {
+      console.error(error);
+
+      const embed = new EmbedBuilder()
+        .setColor('#ff0000')
+        .setDescription('An error occurred while trying to leave the server.');
+
+      await interaction.reply({ embeds: [embed], ephemeral: true });
+    }
+  },
+};
