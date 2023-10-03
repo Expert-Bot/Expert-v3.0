@@ -16,7 +16,7 @@ DashBoard Coming Soon https://panel.expertbot.online/
 <h2>Welcome System</h2>
 ![image](https://github.com/Expert-Bot/Expert-v3.0/assets/92865043/fb9b8d53-9cdc-467a-a75b-745ecc487adf)
 <h2>Invite Logs</h2>
-![Uploading image.png…]()
+[image](https://github.com/Expert-Bot/Expert-v3.0/assets/92865043/81c0e36c-cb33-4066-836b-2882a445f0b9)
 <h2>Add Our Discord bot if you don't want to host your Owne</h2>
 <a href="https://top.gg/bot/1023810715250860105">
   <img src="https://top.gg/api/widget/1023810715250860105.svg">
