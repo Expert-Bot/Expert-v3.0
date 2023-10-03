@@ -6,7 +6,7 @@
 <li><b><u>/Help'<span> is main Command you can see all commands info</span>' or '<span>help</span>' a bot can run without any prefix </u></b></li>
 <li>Want to see more feature Add it to your server and type /help</li>
 </ul>
-<iframe height="2000" src="https://panel.expertbot.online/commands/"></iframe>
+DashBoard Coming Soon https://panel.expertbot.online/
 <h2>Music System</h2>
 <img src="[https://media.discordapp.net/attachments/1157782708446056550/1158396869098098818/image.png?ex=651c18a7&is=651ac727&hm=c1fe288d71855a1e9a9943f43679327cf0cb54cfee4c229b60ff1346b11d4922&=">
 <h2>Chat-Gpt  System</h2>
