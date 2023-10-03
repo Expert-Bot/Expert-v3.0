@@ -1,0 +1,31 @@
+{
+    "store": {
+        "steam": "<:Steam:1062910152791048243>",
+        "epic": "<:Epic:1062910504567324743>",
+        "gog": "<:Gog:1062912659508437042>",
+        "humble": "<:Humble:1062911684915777577>",
+        "ubi": "<:ubisoft:1066893950436249650>"
+    },
+    "other": { 
+        "black": "<:black:1066891522886336582>",
+        "nothing": "<:nothing:1063670843814723645>",
+        "clock": "<:Clock:1075728292398768148>",
+        "pepeWaving": "<a:PepeWaving:1090848027520008204>",
+        "pepeYay": "<:PepeYay:1090905835657494538>"
+    },
+    "badges": {
+        "balance": "<:Balance:1075615037160423555>",
+        "bravery": "<:Bravery:1075614528471044126>",
+        "brillance": "<:Brillance:1075614525488910386>",
+        "activeDeveloper": "<:ActiveDeveloper:1075618670186872872>",
+        "staff": "<:Staff:1075692309724811294>",
+        "partner": "<:Partner:1075692313088622622>",
+        "hypeSquad": "<:HypeSquadEvent:1075695005966012457>",
+        "premiumEarlySupporter": "<:EarlySupporter:1075712399585320970>",
+        "BugHunter1": "<:BugHunter1:1075697592433901579>",
+        "BugHunter2": "<:BugHunter2:1075697596204585080>",
+        "verifiedBot": "<:VerifiedBot:1075706124629725205>",
+        "earlyVerifiedBotDeveloper": "<:EarlyVerifiedBotDeveloper:1075707163898564699>",
+        "CertifiedMod": "<:CertifiedModerators:1075713725442564096>"
+    }
+}

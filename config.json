@@ -1,0 +1,26 @@
+{
+      "developerGuild": "Your Guild ",
+    "activityInterval": 5,
+    "botErrorColor": "",
+    "token": "your bot main token",
+    "mongodb": "your mongo db url",
+  "OPENAI_ORG": "your openai org",
+    "auth": "Ignore this",
+  "api": "chat bot api",
+"apiKey": "ignore this",
+  "BrainShopAPI": "BrainShopAPI",
+  "OPENAI_ORG": "OPENAI_ORG",
+  "apiKey": "your open ai ket",
+  "Setup": {
+    "SIGHT_ENGINE_APIKEY": "your sight engine api key",
+    "SIGHT_ENGINE_APIUSER": "your sight engine usee api key"
+  },
+"prefix": "!", 
+"color": {
+        "embed": "#2f3136",
+        "no": "#FA0000",
+        "yes": "#00FF00"
+    },
+    "chatbot": {
+        "channelID": "chneel id i forgot for what" 
+}}
