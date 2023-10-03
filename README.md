@@ -37,4 +37,4 @@ DashBoard Coming Soon https://panel.expertbot.online/
 <li>you can search and See Anime Image</span></li>
 <li>Generate Ai Image and Much More Just Add Expert to your server and type /help to seen all commands info</span></li>
 for more info Dm Me on discord ``!D R A G O.#0001``
-# join our discord server if you need any help about Expert Related https://discord.gg/crXaZfHBSM
+<h1> join our discord server if you need any help about Expert Related https://discord.gg/crXaZfHBSM</h1>
