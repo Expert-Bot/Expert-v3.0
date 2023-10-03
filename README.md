@@ -1,4 +1,8 @@
 <h1>Expert Bot</h1>
+<li>MultiFunctional Discord Bot With Prefix, nopreefix, and SlashCommand Features</li>
+<h1>Easy To Install</h1>
+<li>npm install</li>
+<li>node index.js</li>
 <ul>
 <li><span>Expert Bot</span> A multifunctional Discord Bot Which have Lots of Discord Functions</li>
 <li>It it has Anti nuke Feature It will Secure your Server Form Nukes, Raids, Spams etc</li>
