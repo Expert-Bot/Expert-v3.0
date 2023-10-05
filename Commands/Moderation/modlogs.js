@@ -7,7 +7,7 @@ const {
   ChannelType,
 } = require("discord.js");
 
-const modSchema = require("../../schemas/moderation/modSchema");
+const modSchema = require("../../Schemas/moderation/modSchema");
 const mongoose = require("mongoose");
 
 module.exports = {
