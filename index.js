@@ -36,7 +36,7 @@ const banschema = require('./Schemas/ban.js');
 const messageLogging = require('./Handlers/messageLogging');
 const { ChannelType } = require('discord.js');
 //use this if your bot on top.gg
-///const topggAPI = new Topgg.Api('Your_topp.gg_token'); //if your bot added in top.gg
+///const topggAPI = new Topgg.Api('Your_topp.gg_token'); ////if your bot added in top.gg line (1492) uncoment other function
 const { loadEvents } = require("./Handlers/eventHandler");
 const { loadCommands } = require("./Handlers/commandHandler");
 const { loadModals } = require("./Handlers/modalHandler");
