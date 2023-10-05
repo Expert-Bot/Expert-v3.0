@@ -35,8 +35,8 @@ const readdirSync = require('fs');
 const banschema = require('./Schemas/ban.js');
 const messageLogging = require('./Handlers/messageLogging');
 const { ChannelType } = require('discord.js');
-
-const topggAPI = new Topgg.Api('Your_topp.gg_token'); //if your bot added in top.gg
+//use this if your bot on top.gg
+///const topggAPI = new Topgg.Api('Your_topp.gg_token'); //if your bot added in top.gg
 const { loadEvents } = require("./Handlers/eventHandler");
 const { loadCommands } = require("./Handlers/commandHandler");
 const { loadModals } = require("./Handlers/modalHandler");
@@ -107,13 +107,9 @@ client.on('guildDelete', async (guild) => {
     console.error(`Error sending farewell message: ${error.message}`);
   }
 });
-
-
-
-///end///
-
+//uncomnet this if you want to use bardai system 
 ///end ////
-client.on(Events.MessageCreate, async message => {
+/*client.on(Events.MessageCreate, async message => {
     if (message.channel.type === ChannelType.DM) {
         if (message.author.bot) return;
 
@@ -153,8 +149,7 @@ client.on(Events.MessageCreate, async message => {
     } else {
         return;
     }
-});
-///sharding system///
+});*/
 // MODMAIL CODE //
 
 client.on(Events.MessageCreate, async message => {
@@ -1488,9 +1483,9 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 //verify system end//
 
-
+///// uncoment this if your bot on top/gg
 //top.gg stats//
-client.on('ready', () => {
+/*client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
   postBotStats();
 });
@@ -1506,7 +1501,7 @@ async function postBotStats() {
   } catch (error) {
     console.error('Failed to post bot stats to top.gg:', error);
   }
-};
+};*/
 //end//
 //boton//
 //noprefix//
