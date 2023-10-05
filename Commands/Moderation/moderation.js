@@ -6,7 +6,7 @@ const {
   Client,
 } = require("discord.js");
 
-const modSchema = require("../../schemas/moderation/modSchema");
+const modSchema = require("../../Schemas/moderation/modSchema");
 
 module.exports = {
   data: new SlashCommandBuilder()
