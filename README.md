@@ -3,8 +3,8 @@
 
 <h1>Easy To Install</h1>
 <ul>
-  <li>npm install</li>
-  <li>node index.js</li>
+  <li>`npm install`</li>
+  <li>`node index.js`/li>
 </ul>
 
 <h1>Features</h1>
