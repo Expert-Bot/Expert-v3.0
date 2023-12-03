@@ -487,9 +487,24 @@ client.on('messageCreate', (message) => {
     }
   });
 
-  
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?meme') {
+    try {
+      const response = await fetch('https://www.reddit.com/r/memes/random/.json');
+      const data = await response.json();
+      const meme = data[0].data.children[0].data;
 
+      const memeTitle = meme.title;
+      const memeImage = meme.url;
 
+      message.channel.send({ content: memeTitle, files: [memeImage] });
+    } catch (error) {
+      console.error('Error fetching the meme:', error);
+      message.reply('There was an error while fetching the meme.');
+    }
+  }
+});
+//prefix system
 
 //prefix system/////////////////////////////////
 // Create a Map to store the server prefixes
@@ -1645,58 +1660,29 @@ client.on(Events.MessageCreate, async (message, err) => {
     }
 })
 //guess//
-client.on(Events.MessageCreate, async (message) => {
-
- 
-
-if(message.author.bot) return;
-
- 
-
 const Schema = require('./Schemas/guess');
 
- 
+client.on(Events.MessageCreate, async (message) => {
+  if (message.author.bot) return;
 
-const data = await Schema.findOne({channelId: message.channel.id});
+  const data = await Schema.findOne({ channelId: message.channel.id });
 
- 
+  if (!data) return;
 
-if(!data) return;
-
- 
-
-if(data) {
-
- 
-
-if(message.content === `${data.number}`) {
-
-    message.react(`✅`);
-
-    message.reply(`Wow! That was the right number! 🥳`);
-
-    message.pin();
-
- 
-
+  if (message.content === `${data.number}`) {
+    await message.react('✅');
+    await message.reply('Wow! That was the right number! 🥳');
+    await message.pin();
+    await message.channel.send('Successfully deleted number, use `/guess enable` to get a new number!');
     await data.delete();
+  }
 
-    message.channel.send(`Successfully delted number, use \`/guess enable\` to get a new number!`)
-
-} 
-
- 
-
- 
-
-if(message.content !== `${data.number}`) return message.react(`❌`)
-
- 
-
-}
-
- 
-
+  if (isNaN(message.content)) {
+    return;
+  }
+  if (parseInt(message.content) !== data.number) {
+    return message.react(`❌`);
+  }
 });
 //error logs//
 const errorChannel = 'Channel iD '; //replace with your err channel id
