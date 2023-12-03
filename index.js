@@ -537,6 +537,23 @@ client.on('messageCreate', async (message) => {
   }
 });
 
+// If you want to enable the auto mod command (bad words) uncomment this section (You can config the words and message in config.json)
+/* client.on('messageCreate', async (message) => {
+  const lowerCaseContent = message.content.toLowerCase(); // Lowercase the message content for better matching
+
+  if (config.badWords.some(word => lowerCaseContent.includes(word))) {
+    try {
+      const warningMessage = await message.reply(config.warningMessage);
+      setTimeout(() => {
+        warningMessage.delete().catch(console.error); // Delete the warning message after a short delay
+      }, 5000); // 5000 milliseconds (5 seconds)
+
+      await message.delete(); // Delete the message containing the swear word
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+}); */
 //////pend///
 
 
