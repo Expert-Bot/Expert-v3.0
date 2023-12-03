@@ -69,7 +69,8 @@ Explore a vast array of additional features:
 
 ### For further assistance, contact:
 
-`!D R A G O.#0001` on Discord
+`hotsuop#0000` on Discord
+
 
 ### Join Our Discord Server for Expert Bot Support:
 
