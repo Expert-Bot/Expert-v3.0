@@ -1,7 +1,7 @@
 {
-  "token": "MTE4MDg2Mzg5Njc3MzQ2ODM1MQ.GmNQed.NevD7DkXx22akU3t8SjTHxmgGHcNOG8VT1AGuc",
-  "mongodb": "mongodb+srv://jwstephenson1000:P8qI8th6twA6k5IH@cluster0.efza6jy.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp",
-  "apiKey": "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",
+  "token": "Bot token",
+  "mongodb": "Montgo",
+  "apiKey": "Open ai key",
   "badWords": [
     "damn",
     "shit",
@@ -10,8 +10,8 @@
   ],
   "warningMessage": "Please dont swear here.\n\nThanks!",
   "Setup": {
-    "SIGHT_ENGINE_APIKEY": "tKEisnh7mvTcdua8pToaKamVyp",
-    "SIGHT_ENGINE_APIUSER": "494609960",
+    "SIGHT_ENGINE_APIKEY": "keyhere",
+    "SIGHT_ENGINE_APIUSER": "key here",
     "PREFIX": "?"
   }
 }
