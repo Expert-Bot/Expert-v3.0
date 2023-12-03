@@ -464,15 +464,30 @@ client.on(Events.MessageCreate, async message => {
 ///prefix system//
 /// suops dev stuff
 client.on('messageCreate', (message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+  
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+  
+    if (command === 'devtest') {
+      message.reply('The bot is working and online!\n My Prefix is: '+  prefix + '\n My Ping is: '+ client.ws.ping +'ms'   + '\n My Uptime is: '+ client.uptime +'ms' + '\n I am in '+  client.guilds.cache.size +' servers!');
+    }
+  });
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const command = args.shift().toLowerCase();
 
-  if (command === 'devtest') {
-    message.reply('The bot is working and online!\n My Prefix is: '+  prefix + '\n My Ping is: '+ client.ws.ping +'ms'   + '\n My Uptime is: '+ client.uptime +'ms' + '\n I am in '+  client.guilds.cache.size +' servers!');
-  }
-});
+  client.on('messageCreate', (message) => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+  
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+  
+    if (command === 'dev') {
+        message.reply(`The bot is owned by:\n- shykh69\n- typedrago\n\nDeveloped by:\n- Hotsuop\n- Titsou™!`);
+
+    }
+  });
+
+  
 
 
 
