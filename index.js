@@ -682,7 +682,36 @@ client.on('messageCreate', async (message) => {
   }
 });
 
+//slow mode
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
 
+  const args = message.content.toLowerCase().split(' ');
+
+  if (args[0] === '?slowmode') {
+    if (!message.member.permissions.has('MANAGE_CHANNELS')) {
+      return message.reply('You do not have permission to use this command.');
+    }
+
+    const seconds = parseInt(args[1]);
+
+    if (!seconds || isNaN(seconds)) {
+      return message.reply('Please provide a valid number of seconds for slow mode.');
+    }
+
+    if (seconds < 0 || seconds > 21600) {
+      return message.reply('Slow mode duration must be between 0 and 21600 seconds (6 hours).');
+    }
+
+    try {
+      await message.channel.setRateLimitPerUser(seconds);
+      message.reply(`Slow mode set to ${seconds} seconds.`);
+    } catch (error) {
+      console.error('Error setting slow mode:', error);
+      message.reply('An error occurred while setting slow mode.');
+    }
+  }
+});
 
 //prefix system
 
