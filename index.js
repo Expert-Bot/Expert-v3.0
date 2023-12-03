@@ -1,26 +1,33 @@
-const {
+const { //imports for discord.js
   Client,
   GatewayIntentBits,
   Partials,
   Collection,
-    Events,
-    EmbedBuilder,
-    permissions,
-    voiceschemas,
-    AttachmentBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    ModalBuilder,
-    TextInputBuilder,
-    PermissionsBitField,
-    TextInputStyle,
-    commands,
-Options,
+  Events,
+  MessageEmbed, // Change EmbedBuilder to MessageEmbed
+  permissions,
+  voiceschemas,
+  AttachmentBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ModalBuilder,
+  TextInputBuilder,
+  PermissionsBitField,
+  TextInputStyle,
+  commands,
+  Options,
+  MessageActionRow,
+  MessageButton,
+  EmbedBuilder,
 } = require("discord.js");
 const Discord = ('discord.js')
+const { MessageAttachment } = require('discord.js')
+const { svg2png } = require('svg-png-converter')
 const { DisTube } = require("distube");
+const config = require('./config.json');
 const { SpotifyPlugin } = require('@distube/spotify');
+const translate = require('@iamtraction/google-translate');
 const { SoundCloudPlugin } = require('@distube/soundcloud');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
 const { handleLogs } = require('./Handlers/handleLogs');
@@ -31,12 +38,14 @@ const fs = require('fs');
 const logs = require('discord-logs');
 const Topgg = require('@top-gg/sdk');
 const axios = require('axios');
+const prefix = '?';
+const fetch = require('node-fetch');
 const readdirSync = require('fs');
 const banschema = require('./Schemas/ban.js');
 const messageLogging = require('./Handlers/messageLogging');
 const { ChannelType } = require('discord.js');
 //use this if your bot on top.gg
-///const topggAPI = new Topgg.Api('Your_topp.gg_token'); ////if your bot added in top.gg line (1492) uncoment other function
+///const topggAPI = new Topgg.Api('Your_topp.gg_token'); // If your bot added in top.gg line (1492) uncoment other function
 const { loadEvents } = require("./Handlers/eventHandler");
 const { loadCommands } = require("./Handlers/commandHandler");
 const { loadModals } = require("./Handlers/modalHandler");
