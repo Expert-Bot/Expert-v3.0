@@ -1,98 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expert Bot</title>
-    <style>
-        body {
-            font-family: sans-serif;
-        }
+## Expert Bot
 
-        h1 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+### A Multifunctional Discord Bot
 
-        p {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+Unleash the power of Expert Bot, a versatile Discord bot designed to elevate your server's capabilities.
 
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
+### Effortless Installation
 
-        li {
-            margin-bottom: 10px;
-        }
+```bash
+npm install
+node index.js
 
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
 
-        img {
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <h1>Expert Bot</h1>
-    <p>MultiFunctional Discord Bot With Prefix, nopreefix, and SlashCommand Features</p>
+### Unparalleled Features
 
-    <h1>Easy To Install</h1>
-    <ul>
-        <li>`npm install`</li>
-        <li>`node index.js`</li>
-    </ul>
+#### Expert Bot: A comprehensive Discord bot brimming with features.
 
-    <h1>Features</h1>
-    <ul>
-        <li><strong>Expert Bot:</strong> A multifunctional Discord Bot with numerous Discord functions.</li>
-        <li>Anti-Nuke Feature: Ensures server security from nukes, raids, spams, etc.</li>
-        <li>AI Feature: Provides the ability to generate code, gather information about legal matters, and generate AI images.</li>
-        <li><strong>/Help:</strong> The primary command to view all command info or 'help' – the bot can run without any prefix.</li>
-        <li>To explore more features, add it to your server and type /help.</li>
-    </ul>
+#### Anti-Nuke Protection: Safeguard your server against malicious attacks.
 
-    <p>DashBoard Coming Soon <a href="https://panel.expertbot.online/">https://panel.expertbot.online/</a></p>
+#### AI Integration: Harness the power of AI for code generation, legal insights, and AI-generated images.
 
-    <h2>Music System</h2>
+#### Seamless Command Execution: Utilize the `/help` command to explore all available commands, prefix-free.
 
-    <h2>Chat-GPT System</h2>
-    <img src="https://media.discordapp.net/attachments/1151589548195840121/1158397718134280312/image.png?ex=651c1971&is=651ac7f1&hm=588020e1e6b68b312ba2840525676c9fcce2fa945c496f8ae1fe62c0948844c9&=">
+#### Discover More: Add Expert Bot to your server and type `/help` to embark on a journey of endless possibilities.
 
-    <h2>Thread Creation System</h2>
+### Dashboard Coming Soon
 
-    <h2>Welcome System</h2>
+Stay tuned for the launch of our intuitive dashboard, offering enhanced bot management.
 
-    <h2>Invite Logs</h2>
+### Music System
 
-    <h2>Add Our Discord Bot if You Don't Want to Host Your Own</h2>
-    <a href="https://top.gg/bot/1023810715250860105">
-        <img src="https://top.gg/api/widget/1023810715250860105.svg">
-    </a>
+Elevate your server's atmosphere with our seamless music system.
 
-    <h2>And Much More</h2>
-    <ul>
-        <li>Ticket System</li>
-        <li>Economy System</li>
-        <li>Leveling System</li>
-        <li>Discord Server Logs System</li>
-        <li>Create Embeds</li>
-        <li>Create Voice Generate Channel</li>
-        <li>Set Yourself as AFK</li>
-        <li>Search and View Anime Images</li>
-        <li>Generate AI Images and More. Just add Expert to your server and type /help to see all command info.</li>
-    </ul>
+### Chat-GPT Integration
 
-    <p>For more info, DM me on Discord: <code>!D R A G O.#0001</code></p>
+Engage in stimulating conversations with our advanced Chat-GPT integration.
 
-    <h1>Join Our Discord Server if You Need Any Help Regarding Expert: <a href="https://discord.gg/crXaZfHBSM">https://discord.gg/crXaZfHBSM</a></h1>
-</body>
-</html>
+### Thread Creation System
+
+Streamline discussions with our effortless thread creation system.
+
+### Welcome System
+
+Greet new members with personalized welcome messages.
+
+### Invite Logs
+
+Maintain a comprehensive record of server invites for enhanced security.
+
+### Experience the Convenience of Expert Bot
+
+Don't want to host your own bot? Seamlessly integrate Expert Bot into your server.
+
+Add Expert Bot to Your Server: [https://top.gg/bot/1023810715250860105](https://top.gg/bot/1023810715250860105)
+
+### A World of Possibilities Awaits
+
+Explore a vast array of additional features:
+
+* Ticket System
+* Economy System
+* Leveling System
+* Discord Server Logs System
+* Embed Creation
+* Voice Generate Channel Creation
+* AFK Status Management
+* Anime Image Search and Viewing
+* AI Image Generation
+
+### For further assistance, contact:
+
+`!D R A G O.#0001` on Discord
+
+### Join Our Discord Server for Expert Bot Support:
+
+Join Our Discord Server: [https://discord.gg/crXaZfHBSM](https://discord.gg/crXaZfHBSM)
+
+Embrace the power of Expert Bot and transform your Discord experience.
