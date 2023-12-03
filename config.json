@@ -1,6 +1,6 @@
 {
-    "token": "your bot main token",
-    "mongodb": "your mongo db url"
+  "token": "your bot main token",
+  "mongodb": "your mongo db url",
   "apiKey": "your open ai ket",
   "Setup": {
     "SIGHT_ENGINE_APIKEY": "your sight engine api key",
