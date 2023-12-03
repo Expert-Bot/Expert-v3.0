@@ -461,32 +461,32 @@ client.on(Events.MessageCreate, async message => {
   message.react('📧')
 
 })
-///prefix system//
+///prefix system
 /// suops dev stuff
 client.on('messageCreate', (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-  
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-  
-    if (command === 'devtest') {
-      message.reply('The bot is working and online!\n My Prefix is: '+  prefix + '\n My Ping is: '+ client.ws.ping +'ms'   + '\n My Uptime is: '+ client.uptime +'ms' + '\n I am in '+  client.guilds.cache.size +' servers!');
-    }
-  });
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
 
-  client.on('messageCreate', (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-  
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-  
-    if (command === 'dev') {
-        message.reply(`The bot is owned by:\n- shykh69\n- typedrago\n\nDeveloped by:\n- Hotsuop\n- Titsou™!`);
+  if (command === 'devtest') {
+    const replyMessage = `The bot is working and online!\n My Prefix is: ${prefix}\n My Ping is: ${client.ws.ping}ms\n My Uptime is: ${client.uptime}ms\n I am in ${client.guilds.cache.size} servers!`;
+    message.reply(replyMessage);
+  }
+});
 
-    }
-  });
+client.on('messageCreate', (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  if (command === 'dev') {
+    const replyMessage = `The bot is owned by:\n- shykh69\n- typedrago\n\nDeveloped by:\n- Hotsuop\n- Titsou™!`;
+    message.reply(replyMessage);
+  }
+});
+// Random memme with ?meme
 client.on('messageCreate', async (message) => {
   if (message.content.toLowerCase() === '?meme') {
     try {
@@ -501,6 +501,25 @@ client.on('messageCreate', async (message) => {
     } catch (error) {
       console.error('Error fetching the meme:', error);
       message.reply('There was an error while fetching the meme.');
+    }
+  }
+});
+// sunset image with `?sunset`
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}`);
+});
+
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?sunset') {
+    try {
+      const response = await fetch(`https://api.unsplash.com/photos/random?query=sunset&orientation=landscape&client_id=dO6I6GGAh84-fQdTHpAUH2kzeLbd2rxALb-GUL9a7Ic`);
+      const data = await response.json();
+      const sunsetImage = data.urls.regular;
+
+      message.channel.send(sunsetImage);
+    } catch (error) {
+      console.error('Error fetching the sunset image:', error);
+      message.reply('There was an error while fetching the sunset image.');
     }
   }
 });
