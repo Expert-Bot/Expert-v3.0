@@ -9,7 +9,7 @@ Unleash the power of Expert Bot, a versatile Discord bot designed to elevate you
 ```bash
 npm install
 node index.js
-
+```
 
 ### Unparalleled Features
 
