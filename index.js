@@ -605,89 +605,99 @@ const commandsList = [
   {
     name: 'serverinfo',
     description: 'Get information about the server',
-    usage: '?serverinfo'
+    usage: '?serverinfo',
+    category: 'Info',
   },
   {
     name: 'meme',
     description: 'Fetch a random meme',
-    usage: '?meme'
+    usage: '?meme',
+    category: 'Image',
   },
   {
     name: 'sunset',
-    description: 'Get information about sunset',
-    usage: '?sunset'
+    description: 'Get a random sunset image',
+    usage: '?sunset',
+    category: 'Image',
   },
   {
     name: 'weather',
     description: 'Get weather information for a location',
-    usage: '?weather <location>'
+    usage: '?weather <location>',
+    category: 'Info',
+  },
+  {
+    name: 'translate',
+    description: 'Translate text to a target language',
+    usage: '?translate <text> <target_language>',
+    category: 'Utilities',
+  },
+  {
+    name: 'slowmode',
+    description: 'Set channel slow mode',
+    usage: '?slowmode <seconds>',
+    category: 'Utilities',
   },
   // Add more commands as needed
 ];
 
-const chunkArray = (array, chunkSize) => {
-  const chunks = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-    chunks.push(array.slice(i, i + chunkSize));
+const groupByCategory = commandsList.reduce((result, command) => {
+  const category = command.category.toLowerCase() || 'uncategorized';
+  if (!result[category]) {
+    result[category] = [];
   }
-  return chunks;
-};
+  result[category].push(command);
+  return result;
+}, {});
 
 client.on('messageCreate', async (message) => {
   if (message.content.toLowerCase() === '?help') {
-    const pages = chunkArray(commandsList, 5); // 5 commands per page
-    let currentPage = 0;
+    const categories = Object.keys(groupByCategory);
+    const embed = new EmbedBuilder()
+      .setColor('#3498db')
+      .setTitle('Command Categories')
+      .setDescription('List of available command categories:')
+      .addFields(categories.map((category) => {
+        return { name: category.charAt(0).toUpperCase() + category.slice(1), value: `\`${category}\``, inline: true };
+      }));
+
+    message.channel.send({ embeds: [embed] });
+  } else if (message.content.toLowerCase().startsWith('?help')) {
+    const requestedCategory = message.content.toLowerCase().split('?help ')[1].trim();
+    const category = Object.keys(groupByCategory).find(
+      (key) => key === requestedCategory || key.charAt(0).toUpperCase() + key.slice(1) === requestedCategory
+    );
+
+    if (!category) {
+      message.reply('Category not found.');
+      return;
+    }
+
+    const commands = groupByCategory[category];
 
     const embed = new EmbedBuilder()
       .setColor('#3498db')
-      .setTitle('Command List')
-      .setDescription('List of available commands:')
-      .setFooter({ text: `Page ${currentPage + 1}/${pages.length}` }); // Set footer as an object
-
-    // Use embed.addFields() instead of embed.addField()
-    embed.addFields(pages[currentPage].map((command) => {
-      return {
-        name: command.name,
-        value: `**Description:** ${command.description}\n**Usage:** ${command.usage}`,
-      };
-    }));
-
-    const helpMessage = await message.channel.send({ embeds: [embed] });
-
-    if (pages.length > 1) {
-      await helpMessage.react('⬅️');
-      await helpMessage.react('➡️');
-    }
-
-    const filter = (reaction, user) => ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id;
-    const collector = helpMessage.createReactionCollector({ filter, time: 60000 });
-
-    collector.on('collect', async (reaction) => {
-      reaction.users.remove(message.author).catch(console.error);
-
-      if (reaction.emoji.name === '➡️' && currentPage < pages.length - 1) {
-        currentPage++;
-      } else if (reaction.emoji.name === '⬅️' && currentPage > 0) {
-        currentPage--;
-      }
-
-      embed.fields = []; // Clear existing fields
-      embed.setFooter({ text: `Page ${currentPage + 1}/${pages.length}` }); // Update footer
-
-      // Use embed.addFields() instead of embed.addField()
-      embed.addFields(pages[currentPage].map((command) => {
-        return {
-          name: command.name,
-          value: `**Description:** ${command.description}\n**Usage:** ${command.usage}`,
-        };
+      .setTitle(`${category.charAt(0).toUpperCase() + category.slice(1)} Commands`)
+      .setDescription(`List of commands under ${category}:`)
+      .addFields(commands.map((command) => {
+        return { name: command.name, value: `**Description:** ${command.description}\n**Usage:** ${command.usage}` };
       }));
 
-      await helpMessage.edit({ embeds: [embed] });
-    });
-
-    collector.on('end', () => {
-      helpMessage.reactions.removeAll().catch(console.error);
-    });
+    message.channel.send({ embeds: [embed] });
+  } else if (message.content.toLowerCase().startsWith('?translate')) {
+    // Implement translation logic here
+    // Extract text and target language from message content
+    // Perform translation and send the translated text as a MessageEmbed
+    // For example:
+    // message.channel.send('Translated text: TranslatedTextHere');
+    message.channel.send('Translation command is under construction.');
+  } else if (message.content.toLowerCase().startsWith('?slowmode')) {
+    // Implement slow mode logic here
+    // Extract the slow mode time from message content
+    // Set slow mode for the channel and send a confirmation message
+    // For example:
+    // message.channel.setRateLimitPerUser(10); // 10 seconds slow mode
+    message.channel.send('Slow mode command is under construction.');
   }
 });
 
