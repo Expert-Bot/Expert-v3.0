@@ -120,8 +120,8 @@ client.on('guildDelete', async (guild) => {
             url: 'https://google-bard1.p.rapidapi.com/',
             headers: {
                 text: message.content,
-                'x-RapidAPI-key': 'api of rapid ,//enter your own api	
-                'x-RapidAPI-Host': 'google-bard1.p.rapidapi.com'
+                'x-RapidAPI-key': 'api of rapid ,//enter your own api',	
+                'x-RapidAPI-Host': 'google-bard1.p.rapidapi.com',
             }
         };
 
