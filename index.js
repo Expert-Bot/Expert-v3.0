@@ -504,7 +504,7 @@ client.on('messageCreate', async (message) => {
     }
   }
 });
-// sunset image with `?sunset`
+// sunset image with ?sunset
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
@@ -523,6 +523,167 @@ client.on('messageCreate', async (message) => {
     }
   }
 });
+// weather commannd
+client.on('messageCreate', async (message) => {
+  if (message.content.startsWith('?weather')) {
+    const args = message.content.split(' ');
+    if (args.length < 2) {
+      message.reply('Please specify a location. Example: `?weather London`');
+      return;
+    }
+
+    args.shift(); // Remove the command ('?weather')
+    const location = args.join(' '); // Join the remaining args as the location
+
+    try {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(location)}&appid=cde77657814616656ba0de9fec623ed1&units=metric`);
+      const weatherData = response.data;
+
+      const weatherDescription = weatherData.weather[0].description;
+      const temperature = weatherData.main.temp;
+      const humidity = weatherData.main.humidity;
+      const windSpeed = weatherData.wind.speed;
+
+      const weatherInfo = `Weather in ${location}: ${weatherDescription}\nTemperature: ${temperature}°C\nHumidity: ${humidity}%\nWind Speed: ${windSpeed} m/s`;
+
+      message.channel.send(weatherInfo);
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+      message.reply('There was an error while fetching the weather - Did you spell the location correctly?');
+    }
+  }
+});
+// server info (prefix)
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?serverinfo') {
+    const guild = message.guild;
+
+    if (!guild) {
+      console.error('Guild not found.');
+      return;
+    }
+
+    const name = guild.name;
+    const memberCount = guild.memberCount;
+    const owner = guild.ownerId;
+    const serverAge = `<t:${Math.floor(guild.createdTimestamp / 1000)}:R>`;
+
+    const embed = {
+      color: 0x00ff00, // Green color in decimal format (you can change this)
+      title: 'Server Information',
+      fields: [
+        { name: 'Server Name', value: `> ${name}` },
+        { name: 'Server Member Count', value: `> ${memberCount}` },
+        { name: 'Server Owner', value: `> ${owner}` },
+        { name: 'Server Age', value: `> ${serverAge}` }
+      ],
+      timestamp: new Date()
+    };
+
+    try {
+      await message.channel.send({ embeds: [embed] });
+    } catch (error) {
+      console.error('Error sending embed:', error);
+      message.reply('There was an error while sending the server information.');
+    }
+  }
+});
+// above is weather
+// help command
+// is here down
+
+const commandsList = [
+  {
+    name: 'serverinfo',
+    description: 'Get information about the server',
+    usage: '?serverinfo'
+  },
+  {
+    name: 'meme',
+    description: 'Fetch a random meme',
+    usage: '?meme'
+  },
+  {
+    name: 'sunset',
+    description: 'Get information about sunset',
+    usage: '?sunset'
+  },
+  {
+    name: 'weather',
+    description: 'Get weather information for a location',
+    usage: '?weather <location>'
+  },
+  // Add more commands as needed
+];
+
+const chunkArray = (array, chunkSize) => {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+};
+
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?help') {
+    const pages = chunkArray(commandsList, 5); // 5 commands per page
+    let currentPage = 0;
+
+    const embed = new EmbedBuilder()
+      .setColor('#3498db')
+      .setTitle('Command List')
+      .setDescription('List of available commands:')
+      .setFooter({ text: `Page ${currentPage + 1}/${pages.length}` }); // Set footer as an object
+
+    // Use embed.addFields() instead of embed.addField()
+    embed.addFields(pages[currentPage].map((command) => {
+      return {
+        name: command.name,
+        value: `**Description:** ${command.description}\n**Usage:** ${command.usage}`,
+      };
+    }));
+
+    const helpMessage = await message.channel.send({ embeds: [embed] });
+
+    if (pages.length > 1) {
+      await helpMessage.react('⬅️');
+      await helpMessage.react('➡️');
+    }
+
+    const filter = (reaction, user) => ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id;
+    const collector = helpMessage.createReactionCollector({ filter, time: 60000 });
+
+    collector.on('collect', async (reaction) => {
+      reaction.users.remove(message.author).catch(console.error);
+
+      if (reaction.emoji.name === '➡️' && currentPage < pages.length - 1) {
+        currentPage++;
+      } else if (reaction.emoji.name === '⬅️' && currentPage > 0) {
+        currentPage--;
+      }
+
+      embed.fields = []; // Clear existing fields
+      embed.setFooter({ text: `Page ${currentPage + 1}/${pages.length}` }); // Update footer
+
+      // Use embed.addFields() instead of embed.addField()
+      embed.addFields(pages[currentPage].map((command) => {
+        return {
+          name: command.name,
+          value: `**Description:** ${command.description}\n**Usage:** ${command.usage}`,
+        };
+      }));
+
+      await helpMessage.edit({ embeds: [embed] });
+    });
+
+    collector.on('end', () => {
+      helpMessage.reactions.removeAll().catch(console.error);
+    });
+  }
+});
+
+
+
 //prefix system
 
 //prefix system/////////////////////////////////
