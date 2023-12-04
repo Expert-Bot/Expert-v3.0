@@ -731,7 +731,33 @@ client.on('messageCreate', async (message) => {
     }
   }
 });
+// brain shop ai 
+client.on('messageCreate', async message => {
+  if (!message.guild) return; // Ignore messages from DMs
+  if (message.author.bot) return; // Ignore messages from bots
 
+  const prefix = '?'; // You can change the prefix of this by changing this
+  if (message.content.startsWith(`${prefix}ask`)) {
+      const prompt = message.content.slice(`${prefix}ask`.length).trim();
+      
+      try {
+          const url = `${config.brainShopApiUrl}?bid=${config.brainShopBotId}&key=${config.brainShopApiKey}&uid=1&msg=${encodeURIComponent(prompt)}`; // No need to change these. They are already defined in config.json
+          const response = await fetch(url);
+          
+          if (response.ok) {
+              const data = await response.json();
+              const answer = data.cnt;
+
+              await message.reply(`The AI says: ${answer}`);
+          } else {
+              throw new Error('Failed to fetch data from BrainShop API');
+          }
+      } catch (error) {
+          console.error('Error occurred:', error);
+          await message.reply('An error occurred while processing your request.');
+      }
+  }
+});
 //prefix system
 
 //prefix system/////////////////////////////////
