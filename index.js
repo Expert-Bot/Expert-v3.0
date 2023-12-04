@@ -25,6 +25,7 @@ const Discord = ('discord.js')
 const { MessageAttachment } = require('discord.js')
 const { svg2png } = require('svg-png-converter')
 const { DisTube } = require("distube");
+const prefix = '?'; // You can change the prefix of the bot this by changing this
 const config = require('./config.json');
 const { SpotifyPlugin } = require('@distube/spotify');
 const translate = require('@iamtraction/google-translate');
@@ -736,7 +737,6 @@ client.on('messageCreate', async message => {
   if (!message.guild) return; // Ignore messages from DMs
   if (message.author.bot) return; // Ignore messages from bots
 
-  const prefix = '?'; // You can change the prefix of this by changing this
   if (message.content.startsWith(`${prefix}ask`)) {
       const prompt = message.content.slice(`${prefix}ask`.length).trim();
       
