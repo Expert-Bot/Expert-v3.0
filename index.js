@@ -39,7 +39,6 @@ const fs = require('fs');
 const logs = require('discord-logs');
 const Topgg = require('@top-gg/sdk');
 const axios = require('axios');
-const prefix = '?';
 const fetch = require('node-fetch');
 const readdirSync = require('fs');
 const banschema = require('./Schemas/ban.js');
