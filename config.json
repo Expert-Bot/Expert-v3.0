@@ -2,13 +2,16 @@
   "token": "Bot token",
   "mongodb": "Montgo",
   "apiKey": "Open ai key",
+  "brainShopApiUrl": "http://api.brainshop.ai/get", 
+  "comment": "You dont need to change the above varible",
+  "brainShopBotId": "YOUR_BRAINSHOP_BOT_ID_HERE",
+  "brainShopApiKey": "YOUR_BRAINSHOP_API_KEY_HERE",
   "warningMessage": "Please dont swear here.\n\nThanks!",
   "Setup": {
     "SIGHT_ENGINE_APIKEY": "keyhere",
     "SIGHT_ENGINE_APIUSER": "key here",
     "PREFIX": "?"
   },
-},
   "badWords": [
     "4r5e",
     "5h1t",
