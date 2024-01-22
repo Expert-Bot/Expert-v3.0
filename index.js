@@ -1,26 +1,34 @@
-const {
+const { //imports for discord.js
   Client,
   GatewayIntentBits,
   Partials,
   Collection,
-    Events,
-    EmbedBuilder,
-    permissions,
-    voiceschemas,
-    AttachmentBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    ModalBuilder,
-    TextInputBuilder,
-    PermissionsBitField,
-    TextInputStyle,
-    commands,
-Options,
+  Events,
+  MessageEmbed, // Change EmbedBuilder to MessageEmbed
+  permissions,
+  voiceschemas,
+  AttachmentBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ModalBuilder,
+  TextInputBuilder,
+  PermissionsBitField,
+  TextInputStyle,
+  commands,
+  Options,
+  MessageActionRow,
+  MessageButton,
+  EmbedBuilder,
 } = require("discord.js");
 const Discord = ('discord.js')
+const { MessageAttachment } = require('discord.js')
+const { svg2png } = require('svg-png-converter')
 const { DisTube } = require("distube");
+const prefix = '?'; // You can change the prefix of the bot this by changing this
+const config = require('./config.json');
 const { SpotifyPlugin } = require('@distube/spotify');
+const translate = require('@iamtraction/google-translate');
 const { SoundCloudPlugin } = require('@distube/soundcloud');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
 const { handleLogs } = require('./Handlers/handleLogs');
@@ -31,12 +39,13 @@ const fs = require('fs');
 const logs = require('discord-logs');
 const Topgg = require('@top-gg/sdk');
 const axios = require('axios');
+const fetch = require('node-fetch');
 const readdirSync = require('fs');
 const banschema = require('./Schemas/ban.js');
 const messageLogging = require('./Handlers/messageLogging');
 const { ChannelType } = require('discord.js');
 //use this if your bot on top.gg
-///const topggAPI = new Topgg.Api('Your_topp.gg_token'); ////if your bot added in top.gg line (1492) uncoment other function
+///const topggAPI = new Topgg.Api('Your_topp.gg_token'); // If your bot added in top.gg line (1492) uncoment other function
 const { loadEvents } = require("./Handlers/eventHandler");
 const { loadCommands } = require("./Handlers/commandHandler");
 const { loadModals } = require("./Handlers/modalHandler");
@@ -120,8 +129,8 @@ client.on('guildDelete', async (guild) => {
             url: 'https://google-bard1.p.rapidapi.com/',
             headers: {
                 text: message.content,
-                'x-RapidAPI-key': 'api of rapid ,//enter your own api	
-                'x-RapidAPI-Host': 'google-bard1.p.rapidapi.com'
+                'x-RapidAPI-key': 'api of rapid ,//enter your own api',	
+                'x-RapidAPI-Host': 'google-bard1.p.rapidapi.com',
             }
         };
 
@@ -461,9 +470,294 @@ client.on(Events.MessageCreate, async message => {
   message.react('📧')
 
 })
-///prefix system//
+///prefix system
+/// suops dev stuff
+client.on('messageCreate', (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
 
+  if (command === 'devtest') {
+    const replyMessage = `The bot is working and online!\n My Prefix is: ${prefix}\n My Ping is: ${client.ws.ping}ms\n My Uptime is: ${client.uptime}ms\n I am in ${client.guilds.cache.size} servers!`;
+    message.reply(replyMessage);
+  }
+});
+
+client.on('messageCreate', (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  if (command === 'dev') {
+    const replyMessage = `The bot is owned by:\n- shykh69\n- typedrago\n\nDeveloped by:\n- Hotsuop\n- Titsou™!`;
+    message.reply(replyMessage);
+  }
+});
+// Random memme with ?meme
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?meme') {
+    try {
+      const response = await fetch('https://www.reddit.com/r/memes/random/.json');
+      const data = await response.json();
+      const meme = data[0].data.children[0].data;
+
+      const memeTitle = meme.title;
+      const memeImage = meme.url;
+
+      message.channel.send({ content: memeTitle, files: [memeImage] });
+    } catch (error) {
+      console.error('Error fetching the meme:', error);
+      message.reply('There was an error while fetching the meme.');
+    }
+  }
+});
+// sunset image with ?sunset
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}`);
+});
+
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?sunset') {
+    try {
+      const response = await fetch(`https://api.unsplash.com/photos/random?query=sunset&orientation=landscape&client_id=dO6I6GGAh84-fQdTHpAUH2kzeLbd2rxALb-GUL9a7Ic`);
+      const data = await response.json();
+      const sunsetImage = data.urls.regular;
+
+      message.channel.send(sunsetImage);
+    } catch (error) {
+      console.error('Error fetching the sunset image:', error);
+      message.reply('There was an error while fetching the sunset image.');
+    }
+  }
+});
+// weather commannd
+client.on('messageCreate', async (message) => {
+  if (message.content.startsWith('?weather')) {
+    const args = message.content.split(' ');
+    if (args.length < 2) {
+      message.reply('Please specify a location. Example: `?weather London`');
+      return;
+    }
+
+    args.shift(); // Remove the command ('?weather')
+    const location = args.join(' '); // Join the remaining args as the location
+
+    try {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(location)}&appid=cde77657814616656ba0de9fec623ed1&units=metric`);
+      const weatherData = response.data;
+
+      const weatherDescription = weatherData.weather[0].description;
+      const temperature = weatherData.main.temp;
+      const humidity = weatherData.main.humidity;
+      const windSpeed = weatherData.wind.speed;
+
+      const weatherInfo = `Weather in ${location}: ${weatherDescription}\nTemperature: ${temperature}°C\nHumidity: ${humidity}%\nWind Speed: ${windSpeed} m/s`;
+
+      message.channel.send(weatherInfo);
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+      message.reply('There was an error while fetching the weather - Did you spell the location correctly?');
+    }
+  }
+});
+// server info (prefix)
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?serverinfo') {
+    const guild = message.guild;
+
+    if (!guild) {
+      console.error('Guild not found.');
+      return;
+    }
+
+    const name = guild.name;
+    const memberCount = guild.memberCount;
+    const owner = guild.ownerId;
+    const serverAge = `<t:${Math.floor(guild.createdTimestamp / 1000)}:R>`;
+
+    const embed = {
+      color: 0x00ff00, // Green color in decimal format (you can change this)
+      title: 'Server Information',
+      fields: [
+        { name: 'Server Name', value: `> ${name}` },
+        { name: 'Server Member Count', value: `> ${memberCount}` },
+        { name: 'Server Owner', value: `> ${owner}` },
+        { name: 'Server Age', value: `> ${serverAge}` }
+      ],
+      timestamp: new Date()
+    };
+
+    try {
+      await message.channel.send({ embeds: [embed] });
+    } catch (error) {
+      console.error('Error sending embed:', error);
+      message.reply('There was an error while sending the server information.');
+    }
+  }
+});
+// above is weather
+// help command
+// is here down
+
+const commandsList = [
+  {
+    name: 'serverinfo',
+    description: 'Get information about the server',
+    usage: '?serverinfo',
+    category: 'Info',
+  },
+  {
+    name: 'meme',
+    description: 'Fetch a random meme',
+    usage: '?meme',
+    category: 'Image',
+  },
+  {
+    name: 'sunset',
+    description: 'Get a random sunset image',
+    usage: '?sunset',
+    category: 'Image',
+  },
+  {
+    name: 'weather',
+    description: 'Get weather information for a location',
+    usage: '?weather <location>',
+    category: 'Info',
+  },
+  {
+    name: 'translate',
+    description: 'Translate text to a target language',
+    usage: '?translate <text> <target_language>',
+    category: 'Utilities',
+  },
+  {
+    name: 'slowmode',
+    description: 'Set channel slow mode',
+    usage: '?slowmode <seconds>',
+    category: 'Utilities',
+  },
+  // Add more commands as needed
+];
+
+const groupByCategory = commandsList.reduce((result, command) => {
+  const category = command.category.toLowerCase() || 'uncategorized';
+  if (!result[category]) {
+    result[category] = [];
+  }
+  result[category].push(command);
+  return result;
+}, {});
+
+client.on('messageCreate', async (message) => {
+  if (message.content.toLowerCase() === '?help') {
+    const categories = Object.keys(groupByCategory);
+    const embed = new EmbedBuilder()
+      .setColor('#3498db')
+      .setTitle('Command Categories')
+      .setDescription('List of available command categories:')
+      .addFields(categories.map((category) => {
+        return { name: category.charAt(0).toUpperCase() + category.slice(1), value: `\`${category}\``, inline: true };
+      }));
+
+    message.channel.send({ embeds: [embed] });
+  } else if (message.content.toLowerCase().startsWith('?help')) {
+    const requestedCategory = message.content.toLowerCase().split('?help ')[1].trim();
+    const category = Object.keys(groupByCategory).find(
+      (key) => key === requestedCategory || key.charAt(0).toUpperCase() + key.slice(1) === requestedCategory
+    );
+
+    if (!category) {
+      message.reply('Category not found.');
+      return;
+    }
+
+    const commands = groupByCategory[category];
+
+    const embed = new EmbedBuilder()
+      .setColor('#3498db')
+      .setTitle(`${category.charAt(0).toUpperCase() + category.slice(1)} Commands`)
+      .setDescription(`List of commands under ${category}:`)
+      .addFields(commands.map((command) => {
+        return { name: command.name, value: `**Description:** ${command.description}\n**Usage:** ${command.usage}` };
+      }));
+
+    message.channel.send({ embeds: [embed] });
+  } else if (message.content.toLowerCase().startsWith('?translate')) {
+    // Implement translation logic here
+    // Extract text and target language from message content
+    // Perform translation and send the translated text as a MessageEmbed
+    // For example:
+    // message.channel.send('Translated text: TranslatedTextHere');
+    message.channel.send('Translation command is under construction.');
+  } else if (message.content.toLowerCase().startsWith('?slowmode')) {
+    // Implement slow mode logic here
+    // Extract the slow mode time from message content
+    // Set slow mode for the channel and send a confirmation message
+    // For example:
+    // message.channel.setRateLimitPerUser(10); // 10 seconds slow mode
+    message.channel.send('Slow mode command is under construction.');
+  }
+});
+
+//slow mode
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
+
+  const args = message.content.toLowerCase().split(' ');
+
+  if (args[0] === '?slowmode') {
+    if (!message.member.permissions.has('MANAGE_CHANNELS')) {
+      return message.reply('You do not have permission to use this command.');
+    }
+
+    const seconds = parseInt(args[1]);
+
+    if (!seconds || isNaN(seconds)) {
+      return message.reply('Please provide a valid number of seconds for slow mode.');
+    }
+
+    if (seconds < 0 || seconds > 21600) {
+      return message.reply('Slow mode duration must be between 0 and 21600 seconds (6 hours).');
+    }
+
+    try {
+      await message.channel.setRateLimitPerUser(seconds);
+      message.reply(`Slow mode set to ${seconds} seconds.`);
+    } catch (error) {
+      console.error('Error setting slow mode:', error);
+      message.reply('An error occurred while setting slow mode.');
+    }
+  }
+});
+// brain shop ai 
+client.on('messageCreate', async message => {
+  if (!message.guild) return; // Ignore messages from DMs
+  if (message.author.bot) return; // Ignore messages from bots
+
+  if (message.content.startsWith(`${prefix}ask`)) {
+      const prompt = message.content.slice(`${prefix}ask`.length).trim();
+      
+      try {
+          const url = `${config.brainShopApiUrl}?bid=${config.brainShopBotId}&key=${config.brainShopApiKey}&uid=1&msg=${encodeURIComponent(prompt)}`; // No need to change these. They are already defined in config.json
+          const response = await fetch(url);
+          
+          if (response.ok) {
+              const data = await response.json();
+              const answer = data.cnt;
+
+              await message.reply(`The AI says: ${answer}`);
+          } else {
+              throw new Error('Failed to fetch data from BrainShop API');
+          }
+      } catch (error) {
+          console.error('Error occurred:', error);
+          await message.reply('An error occurred while processing your request.');
+      }
+  }
+});
+//prefix system
 
 //prefix system/////////////////////////////////
 // Create a Map to store the server prefixes
@@ -511,6 +805,23 @@ client.on('messageCreate', async (message) => {
   }
 });
 
+// If you want to enable the auto mod command (bad words) uncomment this section (You can config the words and message in config.json)
+/* client.on('messageCreate', async (message) => {
+  const lowerCaseContent = message.content.toLowerCase(); // Lowercase the message content for better matching
+
+  if (config.badWords.some(word => lowerCaseContent.includes(word))) {
+    try {
+      const warningMessage = await message.reply(config.warningMessage);
+      setTimeout(() => {
+        warningMessage.delete().catch(console.error); // Delete the warning message after a short delay
+      }, 5000); // 5000 milliseconds (5 seconds)
+
+      await message.delete(); // Delete the message containing the swear word
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+}); */
 //////pend///
 
 
@@ -1602,58 +1913,29 @@ client.on(Events.MessageCreate, async (message, err) => {
     }
 })
 //guess//
-client.on(Events.MessageCreate, async (message) => {
-
- 
-
-if(message.author.bot) return;
-
- 
-
 const Schema = require('./Schemas/guess');
 
- 
+client.on(Events.MessageCreate, async (message) => {
+  if (message.author.bot) return;
 
-const data = await Schema.findOne({channelId: message.channel.id});
+  const data = await Schema.findOne({ channelId: message.channel.id });
 
- 
+  if (!data) return;
 
-if(!data) return;
-
- 
-
-if(data) {
-
- 
-
-if(message.content === `${data.number}`) {
-
-    message.react(`✅`);
-
-    message.reply(`Wow! That was the right number! 🥳`);
-
-    message.pin();
-
- 
-
+  if (message.content === `${data.number}`) {
+    await message.react('✅');
+    await message.reply('Wow! That was the right number! 🥳');
+    await message.pin();
+    await message.channel.send('Successfully deleted number, use `/guess enable` to get a new number!');
     await data.delete();
+  }
 
-    message.channel.send(`Successfully delted number, use \`/guess enable\` to get a new number!`)
-
-} 
-
- 
-
- 
-
-if(message.content !== `${data.number}`) return message.react(`❌`)
-
- 
-
-}
-
- 
-
+  if (isNaN(message.content)) {
+    return;
+  }
+  if (parseInt(message.content) !== data.number) {
+    return message.react(`❌`);
+  }
 });
 //error logs//
 const errorChannel = 'Channel iD '; //replace with your err channel id
