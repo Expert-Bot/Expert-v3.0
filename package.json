@@ -39,6 +39,7 @@
     "quick.db": "^9.1.7",
     "replicate": "^0.17.0",
     "st.db": "^6.0.1",
-    "superagent": "^8.0.9"
+    "superagent": "^8.0.9",
+    "svg-png-converter": "^0.0.9"
   }
 }
