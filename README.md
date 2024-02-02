@@ -69,7 +69,7 @@ Explore a vast array of additional features:
 
 ### For further assistance, contact:
 
-`hotsuop#0000` on Discord
+`hotsuop#0000 and typedrago` on Discord
 
 
 ### Join Our Discord Server for Expert Bot Support:
